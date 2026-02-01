@@ -22,4 +22,4 @@ workflows:
       email:
         recipients:
           - zhaozheng982@gmail.com
-        not_on_failure: false
+        on_failure: true

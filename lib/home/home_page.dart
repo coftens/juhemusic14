@@ -322,7 +322,7 @@ class _RecPageContent extends StatelessWidget {
               ),
             ),
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 24)),
+          const SliverToBoxAdapter(child: SizedBox(height: 160)),
         ],
       ),
     );
@@ -366,7 +366,7 @@ class _SqPageContent extends StatelessWidget {
               ),
             ),
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 100)),
+          const SliverToBoxAdapter(child: SizedBox(height: 160)),
         ],
       ),
     );

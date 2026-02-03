@@ -340,7 +340,15 @@ class PlayerService extends ChangeNotifier {
     _qualities = {for (final k in r.qualities.keys) k: k};
     final picked = r.qualities[_quality]?.url.isNotEmpty == true ? r.qualities[_quality]!.url : r.best.url;
     if (picked.isEmpty) return;
-    await _player!.setUrl(picked);
+    // Fix: 使用 AudioSource.uri 带上 tag，防止后台服务状态丢失
+    final tag = MediaItem(
+      id: cur.shareUrl,
+      title: cur.name,
+      artist: cur.artist,
+      artUri: cur.coverUrl.isNotEmpty ? Uri.tryParse(cur.coverUrl) : null,
+      extras: {'platform': cur.platform},
+    );
+    await _player!.setAudioSource(AudioSource.uri(Uri.parse(picked), tag: tag));
     if (pos > Duration.zero) await _player!.seek(pos);
     await _player!.play();
     notifyListeners();

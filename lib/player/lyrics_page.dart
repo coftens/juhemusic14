@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
@@ -105,7 +106,9 @@ class _LyricsPageState extends State<LyricsPage> {
     // 缓冲时暂停歌词滚动，防止歌词抢跑
     if (_svc.isBuffering) return;
     
-    final ms = pos.inMilliseconds;
+    // 修正：iOS/JustAudio 存在约 400ms 的延迟，导致歌词比音乐快
+    // 这里手动减去偏移量以同步
+    final ms = math.max(0, pos.inMilliseconds - 400);
     final idx = _findActiveIndex(ms);
     if (idx == _activeIndex) return;
     _activeIndex = idx;

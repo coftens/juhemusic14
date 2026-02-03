@@ -164,12 +164,14 @@ class _NowPlayingPageState extends State<NowPlayingPage> {
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
-                    'DEBUG: UI=\$_debugUICount | Player=\${PlayerService.debugPlayerCount}',
+                    'DEBUG:\nUI: $_debugUICount\nPlayer: ${PlayerService.debugPlayerCount}',
+                    textAlign: TextAlign.left,
                     style: const TextStyle(
                       color: Colors.white, 
                       fontSize: 10, 
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.none,
+                      height: 1.2,
                     ),
                   ),
                 ),
